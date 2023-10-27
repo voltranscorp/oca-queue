@@ -7,6 +7,7 @@ import re
 from collections import namedtuple
 
 from odoo import _, api, exceptions, fields, models, tools
+from odoo.modules import registry
 
 from ..fields import JobSerialized
 
@@ -248,15 +249,16 @@ class QueueJobFunction(models.Model):
                 new_vals_list.append(vals)
             vals_list = new_vals_list
         records |= super().create(vals_list)
-        self.clear_caches()
+        # self.clear_caches()
+        self.env.registry.clear_cache()
         return records
 
     def write(self, values):
         res = super().write(values)
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return res
 
     def unlink(self):
         res = super().unlink()
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return res

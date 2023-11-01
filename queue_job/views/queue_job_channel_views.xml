@@ -9,11 +9,9 @@
                 <group>
                     <field
                         name="name"
-                        attrs="{'required': [('name', '!=', 'root')], 'readonly': [('name', '=', 'root')]}"
                     />
                     <field
                         name="parent_id"
-                        attrs="{'required': [('name', '!=', 'root')], 'readonly': [('name', '=', 'root')]}"
                     />
                     <field name="complete_name" />
                     <field name="removal_interval" />
